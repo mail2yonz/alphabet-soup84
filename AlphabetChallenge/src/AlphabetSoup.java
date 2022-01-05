@@ -80,7 +80,12 @@ public class AlphabetSoup {
             }
             System.out.println(Arrays.deepToString(charMatrix));
             for(String str1:strArray){
-                findWords(charMatrix,str1);
+
+                if(!str1.isEmpty()){
+                    findWords(charMatrix,str1);
+                   // System.out.println(str1);
+                }
+
             }
 
         }catch(IOException e)
@@ -123,12 +128,12 @@ public class AlphabetSoup {
             return;
 
         // append current character position to path
-        if((row==0 ||row==matrix.length-1 ) &&( col==0 ||(col==matrix[matrix.length-1].length-1))){
+
             path +=  String.valueOf(row)
                     + ":" + String.valueOf(col) +"   ";
             result=word+" " +path;
 
-        }
+      //  }
 
         // current character matches with the last character
         // in the word
@@ -143,8 +148,9 @@ public class AlphabetSoup {
             if (isvalid(row + rowNum[k], col + colNum[k],
                     prevRow, prevCol))
 
-                FindLocation(matrix, row + rowNum[k], col + colNum[k],
-                        row, col, word, path, index + 1);
+                    FindLocation(matrix, row + rowNum[k], col + colNum[k],
+                            row, col, word, path, index + 1);
+
     }
 
     // Searches given word in a given
