@@ -128,10 +128,12 @@ public class AlphabetSoup {
             return;
 
         // append current character position to path
+            if(index==0 || index==word.length()-1){
+                path +=  String.valueOf(row)
+                        + ":" + String.valueOf(col) +"   ";
+                result=word+" " +path;
+            }
 
-            path +=  String.valueOf(row)
-                    + ":" + String.valueOf(col) +"   ";
-            result=word+" " +path;
 
       //  }
 
