@@ -53,14 +53,19 @@ public class AlphabetSoup {
                 str= scanner.nextLine();
 
                 linenum++;
-                if(str.contains(" ")){
-                    charlist.add(str.replace(" ",""));
-                    count++;
-                }
                 if(str.contains("x")){
                     line1=str;
                 }
+
+                if(str.contains(" ")){
+                    charlist.add(str.replace(" ",""));
+                   // System.out.println(str);
+                    count++;
+                }
+
+
                 if( linenum>count +1){
+                    str=str.replace(" ","");
                     strArray.add(str);
                 }
             }
@@ -78,7 +83,7 @@ public class AlphabetSoup {
 
                 }
             }
-            System.out.println(Arrays.deepToString(charMatrix));
+           // System.out.println(Arrays.deepToString(charMatrix));
             for(String str1:strArray){
 
                 if(!str1.isEmpty()){
@@ -130,7 +135,7 @@ public class AlphabetSoup {
         // append current character position to path
             if(index==0 || index==word.length()-1){
                 path +=  String.valueOf(row)
-                        + ":" + String.valueOf(col) +"   ";
+                        + ":" + String.valueOf(col) +" ";
                 result=word+" " +path;
             }
 
