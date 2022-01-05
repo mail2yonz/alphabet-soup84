@@ -106,30 +106,35 @@ public class AlphabetSoup {
 
     // These arrays are used to get row and column
 // numbers of 8 neighboursof a given cell
-    static int rowNum[] = {-1, -1, -1, 0, 0, 1, 1, 1};
-    static int colNum[] = {-1, 0, 1, -1, 1, -1, 0, 1};
+    static int[] rowNum = {-1, -1, -1, 0, 0, 1, 1, 1};
+    static int[] colNum = {-1, 0, 1, -1, 1, -1, 0, 1};
 
     // A utility function to find the location of the character  for a 2D boolean
 // matrix. It only considers the 8 neighbours as
 // adjacent vertices
-    private   static void FindLocation(char mat[][], int row, int col,
+    private   static void FindLocation(char[][] matrix, int row, int col,
                                        int prevRow, int prevCol, String word,
                                        String path, int index)
     {
+        String result="";
         // return if current character doesn't match with
         // the next character in the word
-        if (index > word.length()-1 || mat[row][col] != word.charAt(index))
+        if (index > word.length()-1 || matrix[row][col] != word.charAt(index))
             return;
 
         // append current character position to path
-        path += word.charAt(index)+ String.valueOf(row)
-                + ":" + String.valueOf(col) +"   ";
+        if((row==0 ||row==matrix.length-1 ) &&( col==0 ||(col==matrix[matrix.length-1].length-1))){
+            path +=  String.valueOf(row)
+                    + ":" + String.valueOf(col) +"   ";
+            result=word+" " +path;
+
+        }
 
         // current character matches with the last character
         // in the word
         if (index == word.length()-1)
         {
-            System.out.print(path +"\n");
+            System.out.print(result +"\n");
             return;
         }
 
@@ -138,7 +143,7 @@ public class AlphabetSoup {
             if (isvalid(row + rowNum[k], col + colNum[k],
                     prevRow, prevCol))
 
-                FindLocation(mat, row + rowNum[k], col + colNum[k],
+                FindLocation(matrix, row + rowNum[k], col + colNum[k],
                         row, col, word, path, index + 1);
     }
 
